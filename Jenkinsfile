@@ -3,11 +3,12 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/sathvikagandham/k8s-app'
-            }
-        }
+       stage('Checkout Code') {
+    steps {
+        git branch: 'main',
+        url: 'https://github.com/sathvikagandham/k8s-app'
+    }
+}
 
         stage('Install Dependencies') {
             steps {
