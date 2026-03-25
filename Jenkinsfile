@@ -1,14 +1,18 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_IMAGE = "sathvika19/k8s-app"
+    }
+
     stages {
 
-       stage('Checkout Code') {
-    steps {
-        git branch: 'main',
-        url: 'https://github.com/sathvikagandham/k8s-app'
-    }
-}
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/sathvikagandham/k8s-app'
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
@@ -31,5 +35,15 @@ pipeline {
             }
         }
 
+    }
+
+    post {
+        success {
+            echo 'Build Successful 🎉'
+        }
+
+        failure {
+            echo 'Build Failed ❌'
+        }
     }
 }
