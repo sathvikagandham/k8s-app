@@ -45,6 +45,11 @@ pipeline {
                 bat 'docker push sathvika19/k8s-app:%BUILD_NUMBER%'
             }
         }
+         stage('Run Docker Image') {
+            steps {
+                bat 'docker run sathvika19/k8s-app:%BUILD_NUMBER%'
+            }
+        }
 
     }
 }
