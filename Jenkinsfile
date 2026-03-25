@@ -29,21 +29,22 @@ pipeline {
             }
         }
 
+        stage('Docker Login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub',
+                usernameVariable: 'USER',
+                passwordVariable: 'PASS')]) {
+
+                    bat 'docker login -u %USER% -p %PASS%'
+                }
+            }
+        }
+
         stage('Push Docker Image') {
             steps {
                 bat 'docker push sathvika19/k8s-app:%BUILD_NUMBER%'
             }
         }
 
-    }
-
-    post {
-        success {
-            echo 'Build Successful 🎉'
-        }
-
-        failure {
-            echo 'Build Failed ❌'
-        }
     }
 }
