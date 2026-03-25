@@ -47,7 +47,7 @@ pipeline {
         }
          stage('Run Docker Image') {
             steps {
-                bat 'docker run sathvika19/k8s-app:%BUILD_NUMBER%'
+                bat 'docker run -d -p 3000:8000 --name k8n-container sathvika19/k8s-app:%BUILD_NUMBER%'
             }
         }
 
