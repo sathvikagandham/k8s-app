@@ -27,7 +27,7 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                sh 'docker push sathvikagandham/k8s-app:${BUILD_NUMBER}'
+                bat 'docker push sathvikagandham/k8s-app:${BUILD_NUMBER}'
             }
         }
 
